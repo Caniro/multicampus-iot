@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content-header %}
+<h1><i class="fas fa-list"></i> {{ post.title }}</h1>
+{% endblock content-header %}
+
+{% block content %}
+<p>
+  {% if post.get_previous %}
+  <a href="{{ post.get_previous.get_absolute_url }}"
+    title="이전 글">prev</a>
+  {% endif %}
+  {% if post.get_next %}
+  <a href="{{ post.get_next.get_absolute_url }}"
+    title="이전 글">next</a>
+  {% endif %}
+</p>
+
+<p>작성자 : {{ user }} / <i class="fas fa-clock"></i> {{ post.modify_dt | date:"Y-m-d H:i:s" }}</p>
+
+<div>
+{% comment %} {{ post.content | linebreaks }} {% endcomment %}
+  {% autoescape off %}
+  {{ post.content }}
+  {% endautoescape %}
+</div>
+
+
+{% if user == post.owner %}
+<div class="text-right">
+  <a href="{% url 'blog:update' post.id %}" class="mr-3">
+    <i class="fas fa-edit"></i> 수정
+  </a>
+  <a href="javascript:deletePost('{% url 'blog:delete' post.id %}')"
+      class="text-danger mr-3">
+    <i class="fas fa-trash"></i> 삭제
+  </a>
+</div>
+{% endif %}
+
+{% endblock content %}
+
+{% block script %}
+<script>
+function deletePost(url) {
+  if (!confirm('삭제할까요?'))
+    return
+  location = url
+}
+</script>
+
+{% endblock script %}

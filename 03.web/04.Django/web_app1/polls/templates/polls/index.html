@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}polls{% endblock %}
+
+{% block content %}
+
+  <h1>투표할 주제를 선택하세요.</h1>
+  {% if latest_question_list %}
+    <ul>
+      {% for question in latest_question_list %}
+        <li>
+          <a href="{% url 'polls:detail' question.id %}">
+            {{ question.question_text }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>투표가 없습니다.</p>
+  {% endif %}
+
+{% endblock content %}

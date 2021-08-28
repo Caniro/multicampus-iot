@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content-header %}
+  <h1>Bookmark Detail</h1>
+{% endblock content-header %}
+
+{% block content %}
+  <div>
+    <div>
+      <h3>{{ object.title }}</h3>
+      <ul>
+        <li>URL : <a href="{{ object.url }}" target="_blank">{{ object.url }}</a></li>
+      </ul>
+    </div>
+
+    <div class="ml-5">
+      <a href="javascript:history.back()" class="btn btn-primary btn-sm">
+        <i class="fas fa-undo"></i> 돌아가기
+      </a>
+    </div>
+  </div>
+{% endblock content %}
