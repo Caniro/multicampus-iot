@@ -9,7 +9,7 @@
 
 const char *ssid = "HanGuest1";
 const char *password = "00001234";
-const char *mqtt_server = "192.168.117.6";
+const char *mqtt_server = "192.168.117.20";
 
 MqttCom com;
 DHT dht11(D6, DHT11);
@@ -30,9 +30,9 @@ void publish()
         return ;
     }
 
-    com.publish("iot/temp", fc);
-    com.publish("iot/humi", fh);
-    com.publish("iot/illu", illu);
+    com.publish("iot/hong/bedroom/temp", fc);
+    com.publish("iot/hong/bedroom/humi", fh);
+    com.publish("iot/hong/bedroom/illu", illu);
 }
 
 void setup()
