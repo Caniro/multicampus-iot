@@ -1,4 +1,3 @@
-import requests as req
 from requests import get
 import json
 
@@ -8,12 +7,12 @@ def get_weather(city='Seoul'):
     URL = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&lang=kr'
     print(URL)
     weather = {}
-    res = req.get(URL)
+    res = get(URL)
     if res.status_code == 200:
         result = res.json()
         weather['main'] = result['weather'][0]['main']
         weather['description'] = result['weather'][0]['description']
-        print(result['weather'][0]['description'])
+        # print(result['weather'][0]['description'])
         icon = result['weather'][0]['icon']
         weather['icon'] = f'http://openweathermap.org/img/w/{icon}.png'
         weather['etc'] = result['main']
