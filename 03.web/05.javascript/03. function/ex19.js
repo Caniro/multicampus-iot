@@ -29,3 +29,11 @@ arrayWalk(ary, showElement3);
 // 이거 두개는 같다. forEach가 메서드로 정의되어 있음
 arrayWalk(ary, showElement4);
 ary.forEach(showElement4);
+
+// 익명 함수
+arrayWalk(ary, function (value, key) {
+  console.log(key + ':' + value);
+});
+arrayWalk(ary, (value, key) => {
+  console.log(key + ' : ' + value);
+});
