@@ -7,7 +7,7 @@
     <hr>
     <div class="row">
       <div v-for="(led,ix) in leds" :key="ix" class="col-4">
-        <led :index="ix" :place="led.place" :color="led.color"
+        <Led :index="ix" :place="led.place" :color="led.color"
             :state="led.state" @led-state-change="onLedStateChange"/>
       </div>
     </div>
