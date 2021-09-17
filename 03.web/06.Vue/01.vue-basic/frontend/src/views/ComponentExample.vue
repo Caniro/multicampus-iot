@@ -1,13 +1,13 @@
 <template>
   <div class="container">
     <h3>서울 날씨</h3>
-    <Weather />
+    <weather />
     <hr>
     <h3>Led 상태</h3>
     <hr>
     <div class="row">
       <div v-for="(led,ix) in leds" :key="ix" class="col-4">
-        <Led :index="ix" :place="led.place" :color="led.color"
+        <led :index="ix" :place="led.place" :color="led.color"
             :state="led.state" @led-state-change="onLedStateChange"/>
       </div>
     </div>

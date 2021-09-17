@@ -5,7 +5,7 @@
       <v-icon>mdi-clock</v-icon>
       {{ new Date()|moment("YYYY-MM-DD hh:mm:ss") }}
     </span>
-    <Weather />
+    <weather />
   </div>
 </template>
 
