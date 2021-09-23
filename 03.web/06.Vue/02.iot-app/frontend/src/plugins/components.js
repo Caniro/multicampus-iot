@@ -9,6 +9,8 @@ import Humidity from '../components/sensors/Humidity'
 import Illumination from '../components/sensors/Illumination'
 import Led from '../components/controllers/Led'
 import RemoteCamera from '../components/controllers/RemoteCamera'
+import SnapshotList from '../components/SnapshotList'
+import VideoList from '../components/VideoList'
 
 Vue.component('knob', VueKnob)
 
@@ -20,3 +22,6 @@ Vue.component('Humidity', Humidity)
 Vue.component('Illumination', Illumination)
 Vue.component('Led', Led)
 Vue.component('RemoteCamera', RemoteCamera)
+
+Vue.component('SnapshotList', SnapshotList)
+Vue.component('VideoList', VideoList)
