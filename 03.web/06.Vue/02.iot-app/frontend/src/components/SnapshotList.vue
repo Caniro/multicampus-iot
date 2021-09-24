@@ -1,7 +1,10 @@
 <template>
   <div>
+    <v-btn class="float-right" color="primary" 
+      @click="load" icon><v-icon>mdi-refresh</v-icon></v-btn>
     <ul class="mt-3">
-      <li v-for="(file, ix) in fileList" :key="ix" @click="image=file">
+      <li v-for="(file, ix) in fileList" :key="ix" @click="image=file"
+        :class="{active: image===file}">
         {{ file.filename }}
       </li>
     </ul>
@@ -18,24 +21,28 @@ export default {
     return {
       image: {}, // 클릭한 이미지
       fileList: [
-        // { name: 'picture1.jpg', url: 'https://picsum.photos/640/480?random=1'},
-        // { name: 'picture2.jpg', url: 'https://picsum.photos/640/480?random=2'},
-        // { name: 'picture3.jpg', url: 'https://picsum.photos/640/480?random=3'},
-        // { name: 'picture4.jpg', url: 'https://picsum.photos/640/480?random=4'},
       ]
     }
   },
-  async mounted() {
-    try {
-      const { data } = await axios.get('/api/snapshot');
-      this.fileList = data.results;
-    } catch(e) {
-      console.log('에러: ', e);
+  methods: {
+    async load() {
+      try {
+        const { data } = await axios.get('/api/snapshot');
+        this.fileList = data.results;
+      } catch(e) {
+        console.log('에러: ', e);
+      }
     }
+  },
+  async mounted() {
+    this.load()
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+.active {
+  color: red;
+  font-weight: bold;
+}
 </style>

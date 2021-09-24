@@ -11,6 +11,7 @@ import Led from '../components/controllers/Led'
 import RemoteCamera from '../components/controllers/RemoteCamera'
 import SnapshotList from '../components/SnapshotList'
 import VideoList from '../components/VideoList'
+import DirectionPanel from '../components/DirectionPanel'
 
 Vue.component('knob', VueKnob)
 
@@ -25,3 +26,4 @@ Vue.component('RemoteCamera', RemoteCamera)
 
 Vue.component('SnapshotList', SnapshotList)
 Vue.component('VideoList', VideoList)
+Vue.component('DirectionPanel', DirectionPanel)
