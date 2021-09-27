@@ -11,16 +11,21 @@
 
     <v-navigation-drawer absolute v-model="drawer" temporary>
       <v-list-item two-line>
-        <v-list-item-avatar>
+        <!-- <v-list-item-avatar v-if="$store.getters.isLogin"> -->
+        <v-list-item-avatar v-if="isLogin">
           <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
         </v-list-item-avatar>
 
         <v-list-item-content>
           <v-list-item-title class="text-h6">
-            홍길동
+            <!-- {{ $store.state.user.username }} -->
+            <!-- {{ $store.getters.isLogin ? user.username : 'IoT 서비스' }} -->
+            {{ isLogin ? user.username : 'IoT 서비스' }}
           </v-list-item-title>
           <v-list-item-subtitle>
-            subtext
+            <!-- {{ $store.state.user.email }} -->
+            <!-- {{ $store.getters.isLogin ? user.email : '' }} -->
+            {{ isLogin ? user.email : '' }}
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
@@ -57,7 +62,7 @@
 </template>
 
 <script>
-
+import { mapState, mapGetters } from 'vuex';
 export default {
   name: 'App',
 
@@ -73,5 +78,17 @@ export default {
   }),
   methods: {
   },
+  computed: {
+    ...mapState(['user']),
+    /*
+     * 아래와 같이 전개된다.
+     * computed: {
+     *   user () {
+     *     return this.$store.state.user;
+     *   }
+     * }
+     */
+    ...mapGetters(['isLogin']),
+  }
 };
 </script>

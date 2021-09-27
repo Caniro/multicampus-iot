@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import datetime
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,12 +45,30 @@ INSTALLED_APPS = [
 ]
 
 REST_FRAMEWORK = {
+    # 기본 페이지네이션
     'DEFAULT_PAGINATION_CLASS':
         'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
+
+    # jwt 관련
+    'DEFAULT_PERMISSION_CLASSES': (
+        # api 요청 시 헤더의 jwt 항목으로 로그인 상태인지 판단
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
 }
 
-import os
+JWT_AUTH = {
+'JWT_SECRET_KEY': SECRET_KEY,
+'JWT_ALGORITHM': 'HS256',
+'JWT_ALLOW_REFRESH': True,
+'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),
+'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=28),
+}
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
