@@ -1,4 +1,6 @@
 module.exports = {
+  outputDir: 'dist',
+  assetsDir: 'static', // Django의 STATIC_URL 설정 값
   transpileDependencies: [
     'vuetify'
   ],

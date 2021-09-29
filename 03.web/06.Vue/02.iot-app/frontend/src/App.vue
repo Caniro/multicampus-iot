@@ -4,6 +4,15 @@
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>IoT Service</v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-btn icon @click="$router.push({ name: 'Home' })">
+        <v-icon>mdi-home</v-icon>
+      </v-btn>
+      <v-btn icon v-if="isLogin" @click="logout">
+        <v-icon>mdi-logout</v-icon>
+      </v-btn>
+      <v-btn icon v-else :to="{ name: 'Login' }">
+        <v-icon>mdi-login</v-icon>
+      </v-btn>
       <v-btn icon>
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
@@ -62,7 +71,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 export default {
   name: 'App',
 
@@ -76,12 +85,11 @@ export default {
       { title: 'About', name: 'About', icon: 'mdi-information' },
     ],
   }),
-  methods: {
-  },
   computed: {
     ...mapState(['user']),
     /*
      * 아래와 같이 전개된다.
+     * 즉 this.$store.state.user 대신 this.user로 접근 가능
      * computed: {
      *   user () {
      *     return this.$store.state.user;
@@ -89,6 +97,27 @@ export default {
      * }
      */
     ...mapGetters(['isLogin']),
+  },
+  methods: {
+    // this.$store.commit('logout') -> this.logout() 단축
+    ...mapMutations(['logout', 'restore']),
+    // this.$store.dispatch('verify', token) -> this.verify(token) 단축
+    ...mapActions(['verify']),
+  },
+
+  async mounted() {
+    let user = localStorage.getItem('user');
+
+    if (user) {
+      // 객체 -> 문자열 : stringify / 문자열 -> 객체 : parse
+      user = JSON.parse(user);
+      try {
+        await this.verify(user.jwt);
+        this.restore(user);
+      } catch (e) {
+        console.log(e);
+      }
+    }
   }
 };
 </script>

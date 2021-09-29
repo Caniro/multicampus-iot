@@ -13,7 +13,7 @@
 </template>
 
 <script scoped>
-import axios from 'axios';
+import axios from '@/util/api';
 
 export default {
   name: 'VideoList',
@@ -28,7 +28,6 @@ export default {
     async load() {
       try {
         const { data } = await axios.get('/api/video');
-        console.log(data.results)
         this.fileList = data.results;
       } catch(e) {
         console.log('에러: ', e);

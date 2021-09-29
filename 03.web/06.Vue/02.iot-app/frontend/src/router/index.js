@@ -33,11 +33,17 @@ const routes = [
     name: 'ExplorationCar',
     component: () => import('../views/ExplorationCar.vue')
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/Login.vue')
+  },
 ]
 
 const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
+  // base: process.env.BASE_URL,
+  base: '/iot/',
   routes
 })
 

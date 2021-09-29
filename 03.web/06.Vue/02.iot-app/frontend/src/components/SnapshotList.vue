@@ -13,7 +13,7 @@
 </template>
 
 <script scoped>
-import axios from 'axios';
+import axios from '@/util/api';
 
 export default {
   name: 'SnapshotList',

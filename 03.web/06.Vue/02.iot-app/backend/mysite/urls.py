@@ -18,15 +18,20 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from rest_framework_jwt.views import obtain_jwt_token, \
                         verify_jwt_token, refresh_jwt_token
+from django.views.generic import TemplateView
 from . import settings
 import mqtt.client
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    path('api/login/', obtain_jwt_token), # id, pw로 jwt 획득
-    path('api/login/verify/', verify_jwt_token), # 브라우저 재기동 등 storage의 jwt가 유효한지 검사
-    path('api/login/refresh/', refresh_jwt_token), # jwt 유효기간 갱신, 여기서 토큰 값이 달라짐
+    path('api/login', obtain_jwt_token), # id, pw로 jwt 획득
+    path('api/login/verify', verify_jwt_token), # 브라우저 재기동 등 storage의 jwt가 유효한지 검사
+    path('api/login/refresh', refresh_jwt_token), # jwt 유효기간 갱신, 여기서 토큰 값이 달라짐
+    # path('', TemplateView.as_view(template_name='index.html'), 
+    #     name='home'),
+    path('iot/', TemplateView.as_view(template_name='iot/index.html'), 
+        name='iot'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
