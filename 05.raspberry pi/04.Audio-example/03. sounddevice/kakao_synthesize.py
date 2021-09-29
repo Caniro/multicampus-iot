@@ -2,11 +2,12 @@ import requests
 import io
 from pydub import AudioSegment
 from pydub.playback import play
+from secret_config import kakao_rest_api_key
 
 URL = "https://kakaoi-newtone-openapi.kakao.com/v1/synthesize"
 HEADERS = {
     "Content-Type" : "application/xml",
-    "Authorization" : "KakaoAK 3230d1fe69f626c9d5fbb964dc8649c8"
+    "Authorization": "KakaoAK " + kakao_rest_api_key,
 }
 DATA = """
 <speak>

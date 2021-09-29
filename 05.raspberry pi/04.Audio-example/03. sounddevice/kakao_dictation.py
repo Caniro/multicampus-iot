@@ -1,13 +1,13 @@
 # 카카오 음성 인식
 import requests
 import json
+from secret_config import kakao_rest_api_key
 
 kakao_speech_url = "https://kakaoi-newtone-openapi.kakao.com/v1/recognize"
-rest_api_key = '3230d1fe69f626c9d5fbb964dc8649c8'
 headers = {
     "Content-Type": "application/octet-stream",
     "X-DSS-Service": "DICTATION",
-    "Authorization": "KakaoAK " + rest_api_key,
+    "Authorization": "KakaoAK " + kakao_rest_api_key,
 }
 
 # 파일 내용을 전송
