@@ -9,5 +9,6 @@
         "xstring": "cpp",
         "xtree": "cpp",
         "xutility": "cpp"
-    }
+    },
+    "python.pythonPath": "C:\\Users\\Caniro\\anaconda3\\envs\\iot\\python.exe"
 }
