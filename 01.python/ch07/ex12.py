@@ -1,3 +1,5 @@
+# 함수의 콜스택
+
 def fn1():
     temp = 1
     print('fn1 start', temp)
@@ -20,3 +22,20 @@ print('*' * 20)
 fn2()
 print('*' * 20)
 fn3()
+
+''' stdout
+fn1 start 1
+fn2 start hello
+fn3 start [1, 2, 3]
+fn3 end [1, 2, 3]
+fn2 end hello
+fn1 end 1
+********************
+fn2 start hello
+fn3 start [1, 2, 3]
+fn3 end [1, 2, 3]
+fn2 end hello
+********************
+fn3 start [1, 2, 3]
+fn3 end [1, 2, 3]
+'''

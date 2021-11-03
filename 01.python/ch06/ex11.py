@@ -1,3 +1,5 @@
+# 반복문 - 별찍기
+
 # for y in range(1, 10):
 #     for x in range(y):
 #         print('*', end = '')
@@ -7,7 +9,6 @@
 #     for x in range(10 - y):
 #         print('*', end = '')
 #     print()
-
 
 def print_star(begin, end):
     for y in range(begin, end):
@@ -22,6 +23,25 @@ def print_star_rev(begin, end, diff = -1):
         print()
 
 print_star(1, 10)
-print()
 print_star_rev(9, 0)
-# print_star_rev(9, 0, -1)
+
+''' stdout
+*
+**
+***
+****
+*****
+******
+*******
+********
+*********
+*********
+********
+*******
+******
+*****
+****
+***
+**
+*
+'''
